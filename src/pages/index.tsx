@@ -1,11 +1,11 @@
-import Link from 'next/link'
-import { getAllPosts } from './api/posts'
+import Link from "next/link";
+import { getAllPosts } from "./api/posts";
 
 interface HomeProps {
   posts: Array<{
-    slug: string
-    title: string
-  }>
+    slug: string;
+    title: string;
+  }>;
 }
 
 export default function Home(props: HomeProps) {
@@ -22,15 +22,15 @@ export default function Home(props: HomeProps) {
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps() {
-  const allPosts = await getAllPosts()
+  const allPosts = await getAllPosts();
 
   return {
     props: {
       posts: allPosts,
-    }
-  }
+    },
+  };
 }
