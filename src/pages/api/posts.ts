@@ -19,18 +19,23 @@ export async function getAllPosts() {
   return posts;
 }
 
-export async function getPostBySlug(slug: string) {
+export async function getPostBySlug(slug) {
   const fileContent = await import(`../../_posts/${slug}.md`);
 
   const meta = matter(fileContent.default);
   const content = marked(meta.content);
 
-  const thumbnailUrl = `http://localhost:3000/api/thumbnail.png?title=${meta.data.title}`;
+  const baseUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://youtube-serverless-thumb-generator-eight.vercel.app";
+
+  const thumbnailUrl = `${baseUrl}/api/thumbnail.png?title=${meta.data.title}`;
 
   return {
     title: meta.data.title,
     description: meta.data.description,
-    content,
     thumbnailUrl,
+    content,
   };
 }
