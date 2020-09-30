@@ -28,7 +28,7 @@ export async function getPostBySlug(slug) {
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://youtube-serverless-thumb-generator.felipesuri.vercel.app";
+      : "https://https://youtube-serverless-thumb-generator-eight.vercel.app";
 
   const thumbnailUrl = `${baseUrl}/api/thumbnail.png?title=${
     meta.data.title
