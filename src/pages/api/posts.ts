@@ -30,7 +30,9 @@ export async function getPostBySlug(slug) {
       ? "http://localhost:3000"
       : "https://youtube-serverless-thumb-generator-eight.vercel.app";
 
-  const thumbnailUrl = `${baseUrl}/api/thumbnail.png?title=${meta.data.title}`;
+  const thumbnailUrl = `${baseUrl}/api/thumbnail.png?title=${
+    meta.data.title
+  }&thumbnail_bg=${encodeURIComponent(meta.data.thumbnail_bg)}`;
 
   return {
     title: meta.data.title,
