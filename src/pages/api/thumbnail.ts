@@ -3,6 +3,7 @@ import { getScreenshot } from "./_lib/chromuim";
 import getThumbnailTemplate from "./_lib/thumbTemplate";
 
 const isDev = !process.env.AWS_REGION;
+const isHtmlDebug = process.env.OG_HTML_DEBUG === "1";
 
 export default async function (
   request: NextApiRequest,
@@ -18,6 +19,13 @@ export default async function (
 
     const html = getThumbnailTemplate({ title, thumbnail_bg });
 
+    if (isHtmlDebug) {
+      response.setHeader("Content-Type", "text/html");
+      response.end(html);
+
+      return;
+    }
+
     const file = await getScreenshot(html, isDev);
 
     response.setHeader("Content-Type", "image/png");
@@ -25,6 +33,7 @@ export default async function (
       "Cache-Control",
       "public, immutable, no-transform, s-maxage=31536000, max-age=31536000"
     );
+
     return response.end(file);
   } catch (err) {
     console.error(err);
