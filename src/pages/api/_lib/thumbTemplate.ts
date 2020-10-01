@@ -5,7 +5,7 @@ interface GetHtmlProps {
 
 export default function getThumbnailTemplate({
   title,
-  thumbnail_bg = "#121413",
+  thumbnail_bg,
 }: GetHtmlProps) {
   return `<!DOCTYPE html>
   <html lang="en">
@@ -22,7 +22,7 @@ export default function getThumbnailTemplate({
         margin: 0;
         font-family: Roboto, sans-serif;
         color: #FFF;
-        background: ${thumbnail_bg};
+        background: ${thumbnail_bg || "#121413"};
         background-image: 
           radial-gradient(circle at 25px 25px, rgba(255, 255, 255, 0.2) 2%, transparent 0%), 
           radial-gradient(circle at 75px 75px, rgba(255, 255, 255, 0.2) 2%, transparent 0%);
