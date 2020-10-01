@@ -11,13 +11,12 @@ export default async function (
 ) {
   try {
     const title = String(request.query.title);
-    const thumbnail_bg = String(request.query.thumbnail_bg);
 
     if (!title) {
       throw new Error("Title is required");
     }
 
-    const html = getThumbnailTemplate({ title, thumbnail_bg });
+    const html = getThumbnailTemplate({ title });
 
     if (isHtmlDebug) {
       response.setHeader("Content-Type", "text/html");
