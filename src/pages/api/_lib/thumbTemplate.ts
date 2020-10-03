@@ -3,7 +3,7 @@ interface GetHtmlProps {
   thumbnail_bg?: string;
 }
 
-export default function getThumbnailTemplate({ title }: GetHtmlProps) {
+export default function getThumbnailTemplate(title: string) {
   return `<!DOCTYPE html>
   <html lang="en">
   <head>

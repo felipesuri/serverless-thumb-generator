@@ -16,7 +16,7 @@ export default async function (
       throw new Error("Title is required");
     }
 
-    const html = getThumbnailTemplate({ title });
+    const html = getThumbnailTemplate(title);
 
     if (isHtmlDebug) {
       response.setHeader("Content-Type", "text/html");
